@@ -8,6 +8,7 @@ const products = [
     name: "Buy AWS Account",
     price: "$15.00 – $13,000.00",
     image: "/images/Aws.jpg",
+    link: "/product/buy-aws-account",
     sale: true,
   },
   {
@@ -67,6 +68,7 @@ const products = [
 
               {/* Button */}
               <button
+                href={product.link}
                 className="
                   mt-6
                   rounded-sm
