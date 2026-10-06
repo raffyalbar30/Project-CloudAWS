@@ -1,7 +1,10 @@
 import React from 'react';
 import Cards from '../components/Cards';
+import { useNavigate } from 'react-router-dom';
 
 const Cloudscards = () => {
+
+const navigate = useNavigate();
 
 const products = [
   {
