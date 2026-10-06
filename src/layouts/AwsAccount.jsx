@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import CryptoPaymentModal from '../components/modalplayment';
 
 const AwsAccountLayout = () => {
 
-  const [ data, setdata ] = useState([]);
-  const [ qyt, setqyt ] = useState();
+  const [ data, setdata ] = useState(null);
+  const [ qyt, setqyt ] = useState(1);
   const [ open, setopen ] = useState(false);
 
   const price = [
@@ -25,11 +25,19 @@ const AwsAccountLayout = () => {
     }
   ]; 
 
-  console.log(data); 
+  useEffect(() => {
+    if (price?.length > 0 && !data) {
+        const defaultItem = price.find((item) => item.id === 1);
+
+        if (defaultItem) {
+            setdata(defaultItem);
+        }
+    }
+}, [price, data]);
 
     return (
       <>
-         <CryptoPaymentModal isOpen={open} onClose={() => setopen(false)}/>
+         <CryptoPaymentModal data={data} qyt={qyt} isOpen={open} onClose={() => setopen(false)}/>
          <div className="min-h-screen w-full bg-white">
 
   {/* Breadcrumb */}
@@ -147,28 +155,26 @@ const AwsAccountLayout = () => {
           </label>
 
           <div className="min-w-0 flex-1">
-
-            <select 
-             className="h-10 w-full rounded-[3px] border border-black bg-white px-3 text-sm text-gray-700 outline-none lg:text-base"
+           <select
+              value={data?.id ?? ""}
+              className="h-10 w-full rounded-[3px] border border-black bg-white px-3 text-sm text-gray-700 outline-none lg:text-base"
               onChange={(e) => {
-                const selectedItem = price.find(
-                    (item) => item.id.toString() === e.target.value
-                );
+                  const selectedItem = price.find(
+                      (item) => item.id.toString() === e.target.value
+                  );
 
-                setdata(selectedItem);
-            }}
-            >
-               {
-                  price?.map((item) => {
-                     return(
-                          <option 
-                             key={item.id}
-                             value={item.id}
-                             >{item.options}</option>
-                     )
-                  })
-               }
-            </select>
+                  setdata(selectedItem);
+              }}
+          >
+          {price?.map((item) => (
+              <option
+                  key={item.id}
+                  value={item.id}
+              >
+                  {item.options}
+              </option>
+          ))}
+         </select>
 
             <button className="mt-1 text-xs text-[#334e8c] lg:text-sm">
               Clear
@@ -180,25 +186,27 @@ const AwsAccountLayout = () => {
 
       {/* Price */}
       <p className="mt-4 text-xl font-semibold text-[#222] lg:text-2xl">
-        {`$${data.price}`}
+        {`$${data?.price}`}
       </p>
 
       {/* Buy */}
       <div className="mt-3 flex items-center gap-1">
 
-       <input
-        type="number"
-        defaultValue="1"
-        min="1"
-        onChange={(e) => {
-            if (e.target.value < 1) {
-                e.target.value = 1;
-            }
+        <input
+      type="number"
+      value={qyt}
+      min="1"
+      onChange={(e) => {
+          const value = Number(e.target.value);
 
-            setqyt(e.target.value); 
-        }}
-        className="h-10 w-12 border border-gray-400 text-center text-sm outline-none"
-    />
+          if (value < 1) {
+              setqyt(1);
+          } else {
+              setqyt(value);
+          }
+      }}
+      className="h-10 w-12 border border-gray-400 text-center text-sm outline-none"
+  />
 
         <button 
         onClick={() => setopen(true)}

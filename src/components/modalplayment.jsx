@@ -4,8 +4,10 @@ import { FaCheckCircle } from "react-icons/fa";
 import { FaTelegram, FaWhatsapp } from "react-icons/fa6";
 import { TbBrandWechat } from "react-icons/tb";
 
-const CryptoPaymentModal = ({ isOpen, onClose }) => {
-
+const CryptoPaymentModal = ({ isOpen, onClose, data, qyt }) => {
+     
+    const price = data?.price * qyt;
+        
       const sosialsmedia = [
             {
                 id: 5, 
@@ -100,7 +102,8 @@ const CryptoPaymentModal = ({ isOpen, onClose }) => {
                         </button>
                     </div>
                 </div>
-                 <div className="flex flex-col items-center justify-center gap-3 text-center">
+                <p className="text-center text-3xl text-blue-600 ">Price: ${price}</p>
+                 <div className="flex flex-col items-center justify-center mt-2 gap-3 text-center">
                     <p className="text-sm text-gray-700">
                         And Confirmations to an admin
                     </p>
