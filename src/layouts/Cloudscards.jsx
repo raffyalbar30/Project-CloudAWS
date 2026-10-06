@@ -71,7 +71,7 @@ const products = [
 
               {/* Button */}
               <button
-                href={product.link}
+                onClick={()=> navigate(product.link)}
                 className="
                   mt-6
                   rounded-sm
