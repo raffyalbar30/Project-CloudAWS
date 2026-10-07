@@ -20,7 +20,7 @@ const Navbar = () => {
          {
             id: 2, 
             name: "Product Cloud", 
-            link: "/Cloud"
+            link: "/Allproducts"
          }, 
           {
             id: 3, 

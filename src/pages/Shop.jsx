@@ -1,6 +1,5 @@
 import React from 'react';
 import Shoplayouts from '../layouts/shop';
-import Cloudscards from '../layouts/Cloudscards';
 
 const Shoppages = () => {
     return (
