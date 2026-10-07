@@ -18,12 +18,14 @@ const products = [
     name: "Buy Google Cloud Account",
     price: "$50.00 – $85.00",
     image: "/images/Cloud.jpg",
+    link: "/product/buy-cloud-account",
     sale: false,
   },
   {
     name: "Buy Hetzner Account",
     price: "$55.00",
     image: "/images/Hetzenr.jpg",
+    link: "/product/buy-hetzernet-account",
     sale: false,
   },
   {

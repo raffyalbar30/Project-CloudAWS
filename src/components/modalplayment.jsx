@@ -131,7 +131,7 @@ const CryptoPaymentModal = ({ isOpen, onClose, data, qyt }) => {
                     onClick={onClose}
                     className="mt-5 h-10 w-full rounded-lg border border-gray-300 text-sm font-medium text-gray-700 transition hover:bg-gray-100"
                 >
-                    Close
+                    Done
                 </button>
 
             </div>
